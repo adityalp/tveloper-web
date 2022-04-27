@@ -1,6 +1,8 @@
 @extends('template')
 
 @section('content')
+    @include('pages.member')
+    @include('sweetalert::alert')
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
 
@@ -11,7 +13,7 @@
                     <h1>Empowering your Business Solution</h1>
                     <h2>Let us enhance your organization!</h2>
                     <div class="d-lg-flex">
-                        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                        <a href="#client" class="btn-get-started scrollto">Get Started</a>
                         <a href="#" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch
                             Video <i class="icofont-play-alt-2"></i></a>
                     </div>
@@ -22,14 +24,15 @@
             </div>
         </div>
 
-    </section><!-- End Cliens Section -->
+    </section>
+    <!-- End Cliens Section -->
 
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>About tvelover</h2>
+                <h2>About tveloper</h2>
             </div>
 
             <div class="row content">
@@ -57,7 +60,8 @@
             </div>
 
         </div>
-    </section><!-- End About Us Section -->
+    </section>
+    <!-- End About Us Section -->
 
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us section-bg">
@@ -118,7 +122,8 @@
             </div>
 
         </div>
-    </section><!-- End Why Us Section -->
+    </section>
+    <!-- End Why Us Section -->
 
 
     <!-- ======= Services Section ======= -->
@@ -176,7 +181,9 @@
                 </div>
 
             </div>
-    </section><!-- End Services Section -->
+        </div>
+    </section>
+    <!-- End Services Section -->
 
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta"
@@ -197,7 +204,8 @@
             </div>
 
         </div>
-    </section><!-- End Cta Section -->
+    </section>
+    <!-- End Cta Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
@@ -352,7 +360,8 @@
             </div>
 
         </div>
-    </section><!-- End Portfolio Section -->
+    </section>
+    <!-- End Portfolio Section -->
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team section-bg">
@@ -458,7 +467,7 @@
 
             <div class="row">
 
-                <div class="col-lg-5 d-flex align-items-stretch">
+                <div class="col-lg d-flex align-items-stretch">
                     <div class="info">
                         <div class="address">
                             <i class="icofont-google-map"></i>
@@ -484,9 +493,22 @@
                     </div>
 
                 </div>
+                
+            </div>
 
-                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        </div>
+    </section>
+    <!-- End Contact Section -->
+    
+    <!-- ======= Client Section ======= -->
+    <section id="client" class="contact">
+        <div class="container">
+          
+            <div class="row">
+    
+              <div class="col-lg mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <form action="/client" method="POST" role="form" class="php-email-form">
+                        @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="name">Your Name</label>
@@ -515,16 +537,17 @@
                         </div>
                         <div class="mb-3">
                             <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                            <!--<div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>-->
                         </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
+                        <div class="text-center">
+                          <button type="submit">Send Message</button>
+                        </div>
                     </form>
                 </div>
-
-            </div>
-
+              </div>
+                
         </div>
     </section>
-    <!-- End Contact Section -->
+    <!-- End Client Section -->
 @endsection

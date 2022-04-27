@@ -34,11 +34,12 @@
                       </ul>
                   </li> --}}
                   <li><a href="#contact">Contact</a></li>
-
               </ul>
           </nav>
 
-          <a href="#about" class="get-started-btn scrollto">Get Started</a>
+          <a href="#client" class="get-started-btn scrollto">Get Started</a>
+          
+          <a href="#staticBackdrop" class="btn-carrier" role="button" aria-pressed="true" data-toggle="modal">Carrier</a>
 
       </div>
   </header>
