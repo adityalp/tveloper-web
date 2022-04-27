@@ -213,4 +213,17 @@
     $('#myInput').trigger('focus')
   })
 
+  //$(window).on("shown.bs.modal", function() {
+  //  AOS.init({disable:true});
+  //});
+
+  //$(window).on("hidden.bs.modal", function() {
+  //  AOS.init({disable:false});
+  //});
+
+  //modal
+  $('#staticBackdrop').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+
 })(jQuery);
