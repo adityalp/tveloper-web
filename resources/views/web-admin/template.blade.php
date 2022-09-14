@@ -45,7 +45,7 @@
     <!-- Vendor JS -->
     <script src="{{ asset('assets/admin/vendor/onscreen/dist/on-screen.umd.min.js') }}"></script>
     <!-- Slider -->
-    <script src="{{ asset('assets/admin/vendor/nouislider/distribute/nouislider.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/nouislider/dist/nouislider.min.js') }}"></script>
     <!-- Smooth scroll -->
     <script src="{{ asset('assets/admin/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
     <!-- Sweet Alerts 2 -->
