@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\Page\ClientController;
-use App\Http\Controllers\Page\MemberController;
+use App\Http\Controllers\WebFront\MainController;
+use App\Http\Controllers\WebFront\ClientController;
+use App\Http\Controllers\WebFront\MemberController;
 use App\Http\Controllers\WebAdmin\DashboardController;
 use Illuminate\Support\Facades\Route;
 

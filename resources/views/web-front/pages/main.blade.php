@@ -1,7 +1,7 @@
-@extends('template')
+@extends('web-front.template')
 
 @section('content')
-    @include('pages.member')
+    @include('web-front/pages.member')
     @include('sweetalert::alert')
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">

@@ -34,11 +34,11 @@
 
 <body>
 
-    @include('components.header')
+    @include('web-front/components.header')
 
     @yield('content')
 
-    @include('components.footer')
+    @include('web-front/components.footer')
 
     <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
     <div id="preloader"></div>

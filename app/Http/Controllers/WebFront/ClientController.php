@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Page;
+namespace App\Http\Controllers\WebFront;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('pages.main');
+        return view('web-front/pages.main');
     }
 
     /**
