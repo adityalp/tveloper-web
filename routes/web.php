@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebAdmin\CompanyController;
 use App\Http\Controllers\WebAdmin\DashboardController;
 use App\Http\Controllers\WebFront\ClientController;
 use App\Http\Controllers\WebFront\MainController;
@@ -25,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     //
     Route::prefix('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
+        Route::resource('company', CompanyController::class);
     });
 });
 
