@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WebAdmin\CompanyController;
 use App\Http\Controllers\WebAdmin\DashboardController;
+use App\Http\Controllers\WebAdmin\TeamController;
 use App\Http\Controllers\WebFront\ClientController;
 use App\Http\Controllers\WebFront\MainController;
 use App\Http\Controllers\WebFront\MemberController;
@@ -26,7 +27,14 @@ Route::middleware(['auth'])->group(function () {
     //
     Route::prefix('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
+
         Route::resource('company', CompanyController::class);
+
+        Route::resource('team', TeamController::class);
+        Route::prefix('team')->group(function () {
+            Route::post('update/photo/{id}', [TeamController::class, 'update_photo'])->name('update-photo');
+        });
+
     });
 });
 
