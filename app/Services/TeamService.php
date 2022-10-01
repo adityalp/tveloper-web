@@ -12,7 +12,7 @@ class TeamService extends BaseServiceAbstract
     protected $model = 'Team';
 
     function get($params) {
-        $_data = $this->getModel()::paginate(10);
+        $_data = $this->getModel()::paginate($params['page']);
         return $_data;
     }
     function create($data) {
@@ -24,6 +24,7 @@ class TeamService extends BaseServiceAbstract
             $data['path'] = $_fPath;
             $_data = $this->getModel()::create($data);
 
+            DB::commit();
             return $_data;
         } catch(\Exception $e) {
             DB::rollBack();

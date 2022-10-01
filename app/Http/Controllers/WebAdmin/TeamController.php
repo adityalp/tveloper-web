@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Validator;
 class TeamController extends Controller
 {
     private $service;
+    private $params = [
+        'page' => 10
+    ];
+
     public function __construct(TeamService $service) {
         $this->service = $service;
     }
@@ -19,7 +23,7 @@ class TeamController extends Controller
     public function index()
     {
         $title = "Team";
-        $data = $this->service->get(null);
+        $data = $this->service->get($this->params);
 
         return view('web-admin/pages/team.team', compact('title', 'data'));
     }

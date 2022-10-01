@@ -11,7 +11,7 @@ class CompanyService extends BaseServiceAbstract
     protected $model = 'Company';
     
     function get($params) {
-        $_data = $this->getModel()::paginate(10);
+        $_data = $this->getModel()::paginate($params['page']);
         return $_data;
     }
     function create($data) {

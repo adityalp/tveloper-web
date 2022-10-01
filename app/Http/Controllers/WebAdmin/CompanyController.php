@@ -9,6 +9,10 @@ use App\Services\CompanyService;
 class CompanyController extends Controller
 {
     private $service;
+    private $params = [
+        'page' => 10
+    ];
+
     public function __construct(CompanyService $service) {
         $this->service = $service;
     }
@@ -16,7 +20,7 @@ class CompanyController extends Controller
     public function index()
     {
         $title = "Company";
-        $data = $this->service->get(null);
+        $data = $this->service->get($this->params);
 
         return view('web-admin/pages/company.company', compact('title', 'data'));
     }
@@ -24,7 +28,7 @@ class CompanyController extends Controller
     public function show()
     {
         $title = "Company";
-        $data = $this->service->get(null);
+        $data = $this->service->get($this->params);
 
         return view('web-admin/pages/company.company', compact('title', 'data'));
     }
