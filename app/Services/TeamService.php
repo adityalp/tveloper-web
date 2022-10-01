@@ -11,10 +11,6 @@ class TeamService extends BaseServiceAbstract
     // define model here as string
     protected $model = 'Team';
 
-    function get($params) {
-        $_data = $this->getModel()::paginate($params['page']);
-        return $_data;
-    }
     function create($data) {
         DB::beginTransaction();
         try {
@@ -32,10 +28,6 @@ class TeamService extends BaseServiceAbstract
 
         return null;
     }
-    function update($key, $data) {        
-        $_data = $this->getModel()::where($key[0], $key[1])->update($data);
-        return $_data;
-    }
     function destroy($key) {
         $_data = $this->getModel()::findOrFail($key);
 
@@ -52,7 +44,7 @@ class TeamService extends BaseServiceAbstract
     function updateFile($key, $data) {
         $_data = $this->getModel()::findOrFail($key);
 
-        if (File::exists(public_path($_data->photo))) 
+        if (File::exists(public_path($_data->photo)))
             File::delete(public_path($_data->photo));
 
         $_fName = time() . '_' . $data->getClientOriginalName();
