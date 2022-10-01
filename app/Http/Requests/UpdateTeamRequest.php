@@ -24,7 +24,9 @@ class UpdateTeamRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name_updt' => 'required',
+            'title_updt' => 'required',
+            'description_updt' => 'required',
         ];
     }
 }

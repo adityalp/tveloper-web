@@ -20,10 +20,10 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-3">
-                            <label for="position" class="col-form-label">Position</label>
+                            <label for="title" class="col-form-label">Title</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="position_updt" name="position_updt" class="form-control" value="{{ $item->position }}">
+                            <input type="text" id="title_updt" name="title_updt" class="form-control" value="{{ $item->title }}">
                         </div>
                     </div>
                     <div class="row mt-3">

@@ -3,76 +3,40 @@
 namespace App\Http\Controllers\WebAdmin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Team;
+use App\Http\Requests\StoreTeamRequest;
+use App\Http\Requests\UpdateTeamRequest;
+use App\Services\TeamService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class TeamController extends Controller
 {
+    private $service;
+    public function __construct(TeamService $service) {
+        $this->service = $service;
+    }
+    
     public function index()
     {
         $title = "Team";
-        $data = Team::all();
+        $data = $this->service->get(null);
 
         return view('web-admin/pages/team.team', compact('title', 'data'));
     }
 
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
-        $validate = Validator::make($request->all(), [
-            'name' => 'required',
-            'position' => 'required',
-            'description' => 'required',
-            'photo' => 'mimes:jpg,jpeg,png|required|max:50000',
-        ]);
-
-        if ($validate->fails())
-            return back()->withErrors($validate->errors());
-
-        $photo = $request->file('photo');
-        $data = $request->all();
-
-        DB::beginTransaction();
-        try {
-            $fileName = time() . '_' . $photo->getClientOriginalName();
-            $filePath = $photo->store('/uploads/team', ['disk' => 'local']);
-
-            Team::insert([
-                'name' => $request->name,
-                'position' => $request->position,
-                'description' => $request->description,
-                'photo' => $filePath,
-            ]);
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-        }
+        $_photo = $request->file('path');
+        $_data = array_merge($request->all(), ['path' => $_photo]);
+        $_data = $this->service->create($_data);
 
         return redirect()->route('team.index')
             ->with('success', 'Inserted Successfully ..');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateTeamRequest $request, $id)
     {
-        $validate = Validator::make($request->all(), [
-            'name_updt' => 'required',
-            'position_updt' => 'required',
-            'description_updt' => 'required',
-        ]);
-
-        if ($validate->fails()) {
-            return back()->withErrors($validate->errors());
-        }
-
-        $data = Team::findOrFail($id);
-        $data->name = $request->name_updt;
-        $data->position = $request->position_updt;
-        $data->description = $request->description_updt;
-        $data->save();
-
+        $_data = $this->service->update(['id', $id], $request->all());
         return redirect()->route('team.index')->with('success', 'Updated Successfully ..');
     }
 
@@ -86,29 +50,13 @@ class TeamController extends Controller
             return back()->withErrors($validate->errors());
         }
 
-        $data = Team::findOrFail($id);
-
-        if (File::exists(public_path($data->photo)))
-            File::delete(public_path($data->photo));
-
-        $photo = $request->file('photo_updt');
-        $filePath = $photo->store('/uploads/team', ['disk' => 'local']);
-
-        $data->photo = $filePath;
-        $data->save();
-
+        $_data = $this->service->updateFile($id, $request->file('photo_updt'));
         return redirect()->route('team.index')->with('success', 'Updated Successfully ..');
     }
 
     public function destroy($id)
     {
-        $data = Team::findOrFail($id);
-
-        if (File::exists(public_path($data->photo)))
-            File::delete(public_path($data->photo));
-
-        $data->delete();
-
+        $_data = $this->service->destroy($id);
         return back()->with('success', 'Deleted Successfully ..');
     }
 

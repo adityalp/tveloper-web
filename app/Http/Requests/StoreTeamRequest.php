@@ -13,7 +13,7 @@ class StoreTeamRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreTeamRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'path' => 'mimes:jpg,jpeg,png|required|max:50000',
         ];
     }
 }

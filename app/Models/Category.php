@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 class Category extends Model
 {
     use HasFactory;
-    use HasUuids;
 
     protected $table = 'categories';
     protected $primaryKey = 'id';
@@ -24,4 +23,14 @@ class Category extends Model
     {
         return $this->morphMany(Portfolio::class, 'category');
     }
+
+    /**
+     * Set the Id.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setIdAttribute($value) {
+        $this->attributes['id'] = (String) Uuid::uuid4();
+    }    
 }

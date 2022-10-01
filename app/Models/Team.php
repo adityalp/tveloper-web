@@ -2,16 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 class Team extends Model
 {
     use HasFactory;
-    use HasUuids;
     
     protected $table = 'teams';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
+
+    /**
+     * Set the Id.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setIdAttribute($value) {
+        $this->attributes['id'] = (String) Uuid::uuid4();
+    }
 }

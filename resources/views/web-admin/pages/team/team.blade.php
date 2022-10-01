@@ -34,9 +34,10 @@
                         <tr class="text-center">
                             <th class="border-0 rounded-start">#</th>
                             <th class="border-0">Name</th>
-                            <th class="border-0">Position</th>
+                            <th class="border-0">Title</th>
                             <th class="border-0">Description</th>
                             <th class="border-0">Photo</th>
+                            <th class="border-0">Is Active</th>
                             <th class="border-0">Action</th>
                         </tr>
                     </thead>
@@ -45,7 +46,7 @@
                             <tr class="text-center">
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->position }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
                                     <a href="{{ asset($item->photo) }}" target="_blank">
@@ -53,6 +54,7 @@
                                             height="42" />
                                     </a>
                                 </td>
+                                <td>{{ $item->is_active }}</td>
                                 <td>
                                     <button class="btn btn-xs btn-primary" title="Update Data" data-bs-toggle="modal"
                                         data-bs-target="#update-data{{ $item->id }}">

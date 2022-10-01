@@ -16,9 +16,10 @@ class CompanySeeder extends Seeder
     {
         Company::create([
             'name'  =>  'PT TEKNOLOGI TUNTAS TERPERCAYA',
-            'location'  => 'Jln. Kopo 330 Bandung, Indonesia',
             'email' => 'info@tveloper.id',
+            'address'  => 'Jln. Kopo 330 Bandung, Indonesia',
             'phone' => '0895606173288',
+            'is_active' => true,
         ]);
     }
 }

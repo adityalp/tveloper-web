@@ -3,48 +3,33 @@
 namespace App\Http\Controllers\WebAdmin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UpdateCompanyRequest;
+use App\Services\CompanyService;
 
 class CompanyController extends Controller
 {
+    private $service;
+    public function __construct(CompanyService $service) {
+        $this->service = $service;
+    }
+
     public function index()
     {
         $title = "Company";
-        $data = Company::all();
+        $data = $this->service->get(null);
 
         return view('web-admin/pages/company.company', compact('title', 'data'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateCompanyRequest $request, $id)
     {
-        $validate = Validator::make($request->all(), [
-            'name' => 'required',
-            'location' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-        ]);
-
-        if ($validate->fails()) {
-            return back()->withErrors($validate->errors());
-        }
-
-        $data = Company::findOrFail($id);
-        $data->name = $request->name;
-        $data->location = $request->location;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->save();
-
+        $_data = $this->service->update(['id', $id], $request->all());
         return redirect()->route('company.index')->with('success', 'Updated Successfully ..');
     }
 
     public function destroy($id)
     {
-        $data = Company::findOrFail($id);
-        $data->delete();
-
+        $_data = $this->service->destroy(['id', $id]);
         return back()->with('success', 'Deleted Successfully ..');
     }
 
