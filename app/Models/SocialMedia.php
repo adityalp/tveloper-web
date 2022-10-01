@@ -14,7 +14,7 @@ class SocialMedia extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
 
-        /**
+    /**
      * Set the Id.
      *
      * @param  string  $value
