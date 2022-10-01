@@ -27,9 +27,8 @@ class TeamController extends Controller
     public function store(StoreTeamRequest $request)
     {
         $_photo = $request->file('path');
-        $_data = array_merge($request->all(), ['path' => $_photo]);
+        $_data = array_merge($request->validated(), ['path' => $_photo]);
         $_data = $this->service->create($_data);
-        return json_encode($_data);
 
         return redirect()->route('team.index')
             ->with('success', 'Inserted Successfully ..');
@@ -37,7 +36,7 @@ class TeamController extends Controller
 
     public function update(UpdateTeamRequest $request, $id)
     {
-        $_data = $this->service->update(['id', $id], $request->all());
+        $_data = $this->service->update(['id', $id], $request->validated());
         return redirect()->route('team.index')->with('success', 'Updated Successfully ..');
     }
 

@@ -13,7 +13,7 @@ class UpdateFreelancerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return request()->session()->token() !== null;
     }
 
     /**

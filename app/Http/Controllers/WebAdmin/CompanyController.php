@@ -21,9 +21,17 @@ class CompanyController extends Controller
         return view('web-admin/pages/company.company', compact('title', 'data'));
     }
 
+    public function show()
+    {
+        $title = "Company";
+        $data = $this->service->get(null);
+
+        return view('web-admin/pages/company.company', compact('title', 'data'));
+    }
+
     public function update(UpdateCompanyRequest $request, $id)
     {
-        $_data = $this->service->update(['id', $id], $request->all());
+        $_data = $this->service->update(['id', $id], $request->validated());
         return redirect()->route('company.index')->with('success', 'Updated Successfully ..');
     }
 
