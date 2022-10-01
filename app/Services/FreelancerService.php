@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
-use App\Services\Base\BaseServiceProvider;
+use App\Services\Base\BaseServiceAbstract;
 
-class FreelancerService implements BaseServiceProvider
+class FreelancerService extends BaseServiceAbstract
 {
-    //
+    // define model here as string
+    protected $model = 'Freelancer';
+
     function get($params) {
 
     }

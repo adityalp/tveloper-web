@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
-use App\Services\Base\BaseServiceProvider;
+use App\Services\Base\BaseServiceAbstract;
 
-class ContactService implements BaseServiceProvider
+class ContactService extends BaseServiceAbstract
 {
-    //
+    // define model here as string
+    protected $model = 'Contact';
+
     function get($params) {
 
     }

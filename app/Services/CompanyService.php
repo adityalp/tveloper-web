@@ -2,31 +2,31 @@
 
 namespace App\Services;
 
+use App\Services\Base\BaseServiceAbstract;
 use Illuminate\Support\Str;
-use App\Models\Company;
-use App\Services\Base\BaseServiceProvider;
 
-class CompanyService implements BaseServiceProvider
+class CompanyService extends BaseServiceAbstract
 {
-    //
-    private $model = Company::class;
+    // define model here as string
+    protected $model = 'Company';
+    
     function get($params) {
-        $_data = $this->model::paginate(10);
+        $_data = $this->getModel()::paginate(10);
         return $_data;
     }
     function create($data) {
         // re-map here
         $data['slug'] = Str::slug($data['title']);
 
-        $_data = $this->model::create($data);
+        $_data = $this->getModel()::create($data);
         return $_data;
     }
     function update($key, $data) {        
-        $_data = $this->model::where($key[0], $key[1])->update($data);
+        $_data = $this->getModel()::where($key[0], $key[1])->update($data);
         return $_data;
     }
     function destroy($key) {
-        $_data = $this->model::findOrFail($key);
+        $_data = $this->getModel()::findOrFail($key);
         $_data->delete();
 
         return $_data;

@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
-use App\Services\Base\BaseServiceProvider;
+use App\Services\Base\BaseServiceAbstract;
 
-class Service implements BaseServiceProvider
+class Service extends BaseServiceAbstract
 {
-    //
+    // define model here as string
+    protected $model = 'Service';
+
     function get($params) {
 
     }

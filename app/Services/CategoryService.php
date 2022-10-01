@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
-use App\Services\Base\BaseServiceProvider;
+use App\Services\Base\BaseServiceAbstract;
 
-class CategoryService implements BaseServiceProvider
+class CategoryService extends BaseServiceAbstract
 {
-    //
+    // define model here as string
+    protected $model = 'Category';
+
     function get($params) {
 
     }
