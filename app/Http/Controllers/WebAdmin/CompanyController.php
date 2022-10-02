@@ -5,7 +5,6 @@ namespace App\Http\Controllers\WebAdmin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Services\CompanyService;
-use App\Utils\Message;
 
 class CompanyController extends Controller
 {
