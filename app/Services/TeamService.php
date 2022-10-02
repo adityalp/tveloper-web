@@ -32,7 +32,7 @@ class TeamService extends BaseServiceAbstract
         try {
             $_fName = time() . '_' . $data['path']->getClientOriginalName();
             $_fPath = $data['path']->storeAs('/uploads/team', $_fName, ['disk' => 'local']);
-            $data['tmp'] = $_fPath;
+            $_data = $data['tmp'] = $_fPath;
             // override from base-class
             $data = $this->appendUuid($data);
             $data = $this->beforeCreate($data);
