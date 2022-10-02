@@ -13,7 +13,7 @@ class Service extends Model
     protected $table = 'services';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-
+    protected $fillable = ['title', 'slug', 'icon', 'description', 'is_active'];
     /**
      * Set the Id.
      *

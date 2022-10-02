@@ -4,6 +4,7 @@ namespace App\Services\Base;
 
 use App\Services\Interfaces\BaseRequestProvider;
 use App\Services\Interfaces\BaseServiceProvider;
+use Ramsey\Uuid\Uuid;
 
 abstract class BaseServiceAbstract 
     implements BaseServiceProvider, BaseRequestProvider {
@@ -14,6 +15,10 @@ abstract class BaseServiceAbstract
     function getModel() {
         $this->_modelImp = app('App\Models\\' . $this->model);
         return $this->_modelImp;
+    }
+    function appendUuid($data) {
+        $data['id'] = (String) Uuid::uuid4();
+        return $data;
     }
 
     /**
@@ -40,7 +45,8 @@ abstract class BaseServiceAbstract
         return $_data;
     }
     function create($data) {
-        $_data = $this->beforeCreate($data);
+        $_data = $this->appendUuid($data);
+        $_data = $this->beforeCreate($_data);
         $_data = $this->getModel()::create($_data);
         $_data = $this->afterCreate($_data);
         return $_data;

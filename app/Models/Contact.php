@@ -13,7 +13,7 @@ class Contact extends Model
     protected $table = 'contacts';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-
+    protected $fillable = ['name', 'email', 'subject', 'message', 'is_active', 'attr'];
     /**
      * Set the Id.
      *

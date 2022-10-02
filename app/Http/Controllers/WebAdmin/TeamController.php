@@ -33,7 +33,7 @@ class TeamController extends Controller
         $_photo = $request->file('path');
         $_data = array_merge($request->validated(), ['path' => $_photo]);
         $_data = $this->service->create($_data);
-
+        return json_encode($_data);
         return redirect()->route('team.index')
             ->with('success', 'Inserted Successfully ..');
     }

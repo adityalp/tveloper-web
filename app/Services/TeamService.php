@@ -12,6 +12,12 @@ class TeamService extends BaseServiceAbstract
     // define model here as string
     protected $model = 'Team';
 
+    function beforeCreate($data)
+    {
+        $data['slug'] = Str::slug($data['name']);
+        $data['path'] = $data['tmp'];
+        return $data;   
+    }
     function beforeUpdate($data)
     {
         $data['slug'] = Str::slug($data['name']);
@@ -26,18 +32,18 @@ class TeamService extends BaseServiceAbstract
         try {
             $_fName = time() . '_' . $data['path']->getClientOriginalName();
             $_fPath = $data['path']->storeAs('/uploads/team', $_fName, ['disk' => 'local']);
-
-            $data['slug'] = Str::slug($data['name']);
-            $data['path'] = $_fPath;
+            $data['tmp'] = $_fPath;
+            // override from base-class
+            $data = $this->appendUuid($data);
+            $data = $this->beforeCreate($data);
             $_data = $this->getModel()::create($data);
 
             DB::commit();
             return $_data;
         } catch(\Exception $e) {
             DB::rollBack();
+            return $e->getMessage();
         }
-
-        return null;
     }
     function destroy($key) {
         $_data = $this->getModel()::findOrFail($key);

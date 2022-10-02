@@ -13,7 +13,7 @@ class Portfolio extends Model
     protected $table = 'portfolios';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-    
+    protected $fillable = ['title', 'slug', 'description', 'path', 'path_zoom', 'attr', 'is_active', 'category_id'];
     /**
      * Get the category that owns the Portfolio
      *

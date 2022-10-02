@@ -13,7 +13,7 @@ class Company extends Model
     protected $table = 'companies';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-
+    protected $fillable = ['name', 'email', 'address', 'phone', 'is_active'];
     /**
      * Set the Id.
      *
