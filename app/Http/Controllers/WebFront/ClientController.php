@@ -3,13 +3,20 @@
 namespace App\Http\Controllers\WebFront;
 
 use App\Http\Controllers\Controller;
+use App\Services\ContactService;
 use Illuminate\Http\Request;
 
-use App\Models\Client;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClientController extends Controller
 {
+    private $service;
+
+    public function __construct(ContactService $service) {
+        parent::__construct();
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,9 +51,10 @@ class ClientController extends Controller
             'subject' => 'required',
             'message' => 'max:500'
         ]);
-        
-        Client::create($request->all());
-        Alert::toast('Your Post as been submited!','success');
+        $message = $this->message::afterEvent('Your Post as been submited!', 'Failed', true);
+
+        $this->service->create($request->all());
+        Alert::toast($message,'success');
         
         return back();
     }
