@@ -12,11 +12,9 @@ use Illuminate\Support\Facades\Validator;
 class TeamController extends Controller
 {
     private $service;
-    private $params = [
-        'page' => 10
-    ];
 
     public function __construct(TeamService $service) {
+        parent::__construct();
         $this->service = $service;
     }
     
@@ -33,15 +31,16 @@ class TeamController extends Controller
         $_photo = $request->file('path');
         $_data = array_merge($request->validated(), ['path' => $_photo]);
         $_data = $this->service->create($_data);
-        return json_encode($_data);
-        return redirect()->route('team.index')
-            ->with('success', 'Inserted Successfully ..');
+
+        return redirect()
+            ->route('team.index')
+            ->with('success', $this->message::afterInsert(true));
     }
 
     public function update(UpdateTeamRequest $request, $id)
     {
         $_data = $this->service->update(['id', $id], $request->validated());
-        return redirect()->route('team.index')->with('success', 'Updated Successfully ..');
+        return redirect()->route('team.index')->with('success', $this->message::afterUpdate(true));
     }
 
     public function update_photo(Request $request, $id)
@@ -55,13 +54,13 @@ class TeamController extends Controller
         }
 
         $_data = $this->service->updateFile($id, $request->file('photo_updt'));
-        return redirect()->route('team.index')->with('success', 'Updated Successfully ..');
+        return redirect()->route('team.index')->with('success', $this->message::afterUpdate(true));
     }
 
     public function destroy($id)
     {
         $_data = $this->service->destroy($id);
-        return back()->with('success', 'Deleted Successfully ..');
+        return back()->with('success', $this->message::afterDestroy(true));
     }
 
 }
