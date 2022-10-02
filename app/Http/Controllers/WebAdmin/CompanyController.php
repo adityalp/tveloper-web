@@ -35,13 +35,13 @@ class CompanyController extends Controller
     public function update(UpdateCompanyRequest $request, $id)
     {
         $_data = $this->service->update(['id', $id], $request->validated());
-        return redirect()->route('company.index')->with('success', Message::afterUpdate(true));
+        return redirect()->route('company.index')->with('success', $this->message::afterUpdate(true));
     }
 
     public function destroy($id)
     {
         $_data = $this->service->destroy(['id', $id]);
-        return back()->with('success', Message::afterDestroy(true));
+        return back()->with('success', $this->message::afterDestroy(true));
     }
 
 
