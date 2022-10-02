@@ -2,15 +2,34 @@
 
 namespace App\Services\Base;
 
-use App\Services\Base\BaseServiceProvider;
+use App\Services\Interfaces\BaseRequestProvider;
+use App\Services\Interfaces\BaseServiceProvider;
 
-abstract class BaseServiceAbstract implements BaseServiceProvider {
+abstract class BaseServiceAbstract 
+    implements BaseServiceProvider, BaseRequestProvider {
+
     private $_modelImp;
     protected $model;
 
     function getModel() {
         $this->_modelImp = app('App\Models\\' . $this->model);
         return $this->_modelImp;
+    }
+
+    /**
+     * format requests handlers
+     */
+    function beforeCreate($data) {
+        return $data;
+    }
+    function beforeUpdate($data) {
+        return $data;
+    }
+    function afterCreate($data) {
+        return $data;
+    }
+    function afterUpdate($data) {
+        return $data;
     }
 
     /**
@@ -21,11 +40,15 @@ abstract class BaseServiceAbstract implements BaseServiceProvider {
         return $_data;
     }
     function create($data) {
-        $_data = $this->getModel()::create($data);
+        $_data = $this->beforeCreate($data);
+        $_data = $this->getModel()::create($_data);
+        $_data = $this->afterCreate($_data);
         return $_data;
     }
-    function update($key, $data) {        
-        $_data = $this->getModel()::where($key[0], $key[1])->update($data);
+    function update($key, $data) {
+        $_data = $this->beforeUpdate($data);
+        $_data = $this->getModel()::where($key[0], $key[1])->update($_data);
+        $_data = $this->afterUpdate($_data);
         return $_data;
     }
     function destroy($key) {

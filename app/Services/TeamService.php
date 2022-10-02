@@ -5,18 +5,29 @@ namespace App\Services;
 use App\Services\Base\BaseServiceAbstract;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class TeamService extends BaseServiceAbstract
 {
     // define model here as string
     protected $model = 'Team';
 
+    function beforeUpdate($data)
+    {
+        $data['slug'] = Str::slug($data['name']);
+        return $data;
+    }
+
+    /**
+     * Override from base-class
+     */
     function create($data) {
         DB::beginTransaction();
         try {
             $_fName = time() . '_' . $data['path']->getClientOriginalName();
             $_fPath = $data['path']->storeAs('/uploads/team', $_fName, ['disk' => 'local']);
 
+            $data['slug'] = Str::slug($data['name']);
             $data['path'] = $_fPath;
             $_data = $this->getModel()::create($data);
 

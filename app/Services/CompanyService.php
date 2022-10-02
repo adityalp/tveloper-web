@@ -10,11 +10,14 @@ class CompanyService extends BaseServiceAbstract
     // define model here as string
     protected $model = 'Company';
     
-    function create($data) {
-        // re-map here
+    function beforeCreate($data)
+    {
         $data['slug'] = Str::slug($data['title']);
-
-        $_data = $this->getModel()::create($data);
-        return $_data;
+        return $data;
+    }
+    function beforeUpdate($data)
+    {
+        $data['slug'] = Str::slug($data['title']);
+        return $data;
     }
 }

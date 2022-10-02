@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Base;
+namespace App\Services\Interfaces;
 
 interface BaseServiceProvider {
     function get($params);
