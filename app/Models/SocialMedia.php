@@ -13,7 +13,7 @@ class SocialMedia extends Model
     protected $table = 'social_medias';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-    protected $fillable = ['icon', 'title', 'link', 'is_active'];
+    protected $fillable = ['id', 'icon', 'title', 'link', 'is_active'];
     /**
      * Set the Id.
      *
