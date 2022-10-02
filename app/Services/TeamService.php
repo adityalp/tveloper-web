@@ -16,7 +16,7 @@ class TeamService extends BaseServiceAbstract
     {
         $data['slug'] = Str::slug($data['name']);
         $data['path'] = $data['tmp'];
-        return $data;   
+        return $data;
     }
     function beforeUpdate($data)
     {
