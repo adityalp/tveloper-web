@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WebAdmin\CompanyController;
 use App\Http\Controllers\WebAdmin\DashboardController;
+use App\Http\Controllers\WebAdmin\PortfolioController;
 use App\Http\Controllers\WebAdmin\TeamController;
 use App\Http\Controllers\WebFront\ClientController;
 use App\Http\Controllers\WebFront\MainController;
@@ -34,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('team')->group(function () {
             Route::post('update/photo/{id}', [TeamController::class, 'update_photo'])->name('update-photo');
         });
+
+        Route::resource('portfolio', PortfolioController::class);
 
     });
 });

@@ -6,9 +6,12 @@
         <ul class="nav flex-column pt-3 pt-md-0">
             <li class="nav-item">
                 <a href="#" class="nav-link d-flex align-items-center">
-                    <span class="mt-1 ms-1 sidebar-text">Tveloper Admin</span>
+                    <span class="mt-1 ms-4 sidebar-text">Tveloper Admin</span>
                 </a>
             </li>
+
+            <li role="separator" class="dropdown-divider mt-2 mb-3 border-gray-700"></li>
+
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <span class="sidebar-icon">
@@ -49,7 +52,19 @@
                 </a>
             </li>
 
-            <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+            <li class="nav-item">
+                <a href="{{ route('portfolio.index') }}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Portfolio</span>
+                </a>
+            </li>
 
         </ul>
     </div>
