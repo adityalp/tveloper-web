@@ -17,7 +17,7 @@ class TeamController extends Controller
         parent::__construct();
         $this->service = $service;
     }
-    
+
     public function index()
     {
         $title = "Team";
@@ -46,14 +46,14 @@ class TeamController extends Controller
     public function update_photo(Request $request, $id)
     {
         $validate = Validator::make($request->all(), [
-            'photo_updt' => 'mimes:jpg,jpeg,png|required|max:50000',
+            'photo' => 'mimes:jpg,jpeg,png|required|max:50000',
         ]);
 
         if ($validate->fails()) {
             return back()->withErrors($validate->errors());
         }
 
-        $_data = $this->service->updateFile($id, $request->file('photo_updt'));
+        $_data = $this->service->updateFile($id, $request->file('photo'));
         return redirect()->route('team.index')->with('success', $this->message::afterUpdate(true));
     }
 

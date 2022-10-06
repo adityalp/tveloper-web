@@ -48,25 +48,25 @@ class TeamService extends BaseServiceAbstract
     function destroy($key) {
         $_data = $this->getModel()::findOrFail($key);
 
-        if (File::exists(public_path($_data->photo))) 
-            File::delete(public_path($_data->photo));
+        if (File::exists(public_path($_data->path)))
+            File::delete(public_path($_data->path));
 
         $_data->delete();
         return $_data;
     }
-    
+
     /**
      * custom logic goes here ...
      */
     function updateFile($key, $data) {
         $_data = $this->getModel()::findOrFail($key);
 
-        if (File::exists(public_path($_data->photo)))
-            File::delete(public_path($_data->photo));
+        if (File::exists(public_path($_data->path)))
+            File::delete(public_path($_data->path));
 
         $_fName = time() . '_' . $data->getClientOriginalName();
         $_fPath = $data->storeAs('/uploads/team', $_fName, ['disk' => 'local']);
-        $_data->photo = $_fPath;
+        $_data->path = $_fPath;
         $_data->save();
 
         return $_data;

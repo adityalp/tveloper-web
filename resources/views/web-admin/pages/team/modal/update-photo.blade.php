@@ -14,7 +14,7 @@
                             <label for="formFile" class="form-label">Photo</label>
                         </div>
                         <div class="col-9">
-                            <input class="form-control" type="file" id="photo_updt" name="photo_updt">
+                            <input class="form-control" type="file" id="photo" name="photo">
                         </div>
                     </div>
             </div>

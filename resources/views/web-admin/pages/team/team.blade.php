@@ -49,8 +49,8 @@
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
-                                    <a href="{{ asset($item->photo) }}" target="_blank">
-                                        <img class="rounded-circle" src="{{ asset($item->photo) }}" width="46"
+                                    <a href="{{ asset($item->path) }}" target="_blank">
+                                        <img class="rounded-circle" src="{{ asset($item->path) }}" width="46"
                                             height="42" />
                                     </a>
                                 </td>
