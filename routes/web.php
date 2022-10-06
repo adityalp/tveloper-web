@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebAdmin\CategoryController;
 use App\Http\Controllers\WebAdmin\CompanyController;
 use App\Http\Controllers\WebAdmin\DashboardController;
 use App\Http\Controllers\WebAdmin\PortfolioController;
@@ -37,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::resource('portfolio', PortfolioController::class);
+
+        Route::resource('category', CategoryController::class);
 
     });
 });
