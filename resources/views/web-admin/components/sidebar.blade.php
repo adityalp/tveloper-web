@@ -85,7 +85,7 @@
                     </ul>
                     <ul class="flex-column nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('portfolio.index') }}">
                                 <span class="sidebar-text">Portfolio Data</span>
                             </a>
                         </li>
