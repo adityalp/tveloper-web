@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
 use App\Services\TeamService;
+use App\Utils\StorageFirebase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,6 +32,9 @@ class TeamController extends Controller
         $_photo = $request->file('path');
         $_data = array_merge($request->validated(), ['path' => $_photo]);
         $_data = $this->service->create($_data);
+
+        $d = StorageFirebase::getInstance();
+        $d->store("team", $_photo);
 
         return redirect()
             ->route('team.index')
