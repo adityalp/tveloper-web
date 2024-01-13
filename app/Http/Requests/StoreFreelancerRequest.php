@@ -25,6 +25,10 @@ class StoreFreelancerRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required',
+            'email' => 'required',
+            'skill' => 'required',
+            'phone' => 'required'
         ];
     }
 }
