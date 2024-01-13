@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCompanyRequest;
+use App\Http\Requests\StoreCompanyRequest;
 use App\Services\CompanyService;
 
 class CompanyController extends Controller
@@ -31,6 +32,16 @@ class CompanyController extends Controller
         return view('web-admin/pages/company.company', compact('title', 'data'));
     }
 
+    public function store(StoreCompanyRequest $request)
+    {
+        $_data = array_merge($request->validated());
+        $_data = $this->service->create($_data);
+
+        return redirect()
+            ->route('company.index')
+            ->with('success', $this->message::afterInsert(true));
+    }
+
     public function update(UpdateCompanyRequest $request, $id)
     {
         $_data = $this->service->update(['id', $id], $request->validated());
@@ -39,7 +50,7 @@ class CompanyController extends Controller
 
     public function destroy($id)
     {
-        $_data = $this->service->destroy(['id', $id]);
+        $_data = $this->service->destroy($id);
         return back()->with('success', $this->message::afterDestroy(true));
     }
 

@@ -7,38 +7,38 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('portfolio.store') }}">
+                <form method="POST" action="{{ route('contact.store') }}">
                     @csrf
                     <div class="row">
                         <div class="col-3">
-                            <label for="name" class="col-form-label">Title</label>
+                            <label for="name" class="col-form-label">Name</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="name" name="name" class="form-control">
+                            <input type="text" id="name" name="name" class="form-control" >
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-3">
-                            <label for="address" class="col-form-label">Adrdress</label>
+                            <label for="email" class="col-form-label">Email</label>
                         </div>
                         <div class="col-9">
-                            <textarea class="form-control" id="address" name="address" rows="4"></textarea>
+                            <input type="text" id="email" name="email" class="form-control">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-3">
-                            <label for="path" class="form-label">Photo</label>
+                            <label for="subject" class="col-form-label">Subject</label>
                         </div>
                         <div class="col-9">
-                            <input class="form-control" type="file" id="path" name="path">
+                            <input type="text" id="subject" name="subject" class="form-control">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-3">
-                            <label for="phone" class="col-form-label">Category</label>
+                            <label for="message" class="col-form-label">Message</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="phone" name="phone" class="form-control">
+                            <textarea class="form-control" id="message" name="message" rows="4">-</textarea>
                         </div>
                     </div>
             </div>

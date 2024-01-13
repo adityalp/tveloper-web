@@ -24,7 +24,10 @@ class StoreContactRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required'
         ];
     }
 }

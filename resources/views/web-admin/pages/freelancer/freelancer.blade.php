@@ -7,7 +7,7 @@
 
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Portfolio Data</h1>
+                <h1 class="h4">Freelancer Data</h1>
             </div>
             <div>
                 <button class="btn btn-secondary d-inline-flex align-items-center" data-bs-toggle="modal"
@@ -33,10 +33,10 @@
                     <thead class="thead-light">
                         <tr class="text-center">
                             <th class="border-0 rounded-start">#</th>
-                            <th class="border-0">Title</th>
-                            <th class="border-0">Description</th>
-                            <th class="border-0">Image</th>
-                            <th class="border-0">Category</th>
+                            <th class="border-0">Name</th>
+                            <th class="border-0">Email</th>
+                            <th class="border-0">Skill</th>
+                            <th class="border-0">Phone</th>
                             <th class="border-0">Action</th>
                         </tr>
                     </thead>
@@ -44,15 +44,10 @@
                         @foreach ($data as $key => $item)
                             <tr class="text-center">
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->description }}</td>
-                                <td>
-                                    <a href="{{ asset($item->path) }}" target="_blank">
-                                        <img class="rounded-circle" src="{{ asset($item->path) }}" width="46"
-                                            height="42" />
-                                    </a>
-                                </td>
-                                <td>{{ $item->category_id }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->skill }}</td>
+                                <td>{{ $item->phone }}</td>
                                 <td>
                                     <button class="btn btn-xs btn-primary" title="Update Data" data-bs-toggle="modal"
                                         data-bs-target="#update-data{{ $item->id }}">
@@ -64,19 +59,7 @@
                                         </svg>
                                     </button>
 
-                                    @include('web-admin.pages.portoflio.modal.update')
-
-                                    <button class="btn btn-xs btn-primary" title="Update Photo" data-bs-toggle="modal"
-                                        data-bs-target="#update-photo{{ $item->id }}">
-                                        <svg class="icon icon-xs" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                            </path>
-                                        </svg>
-                                    </button>
-
-                                    @include('web-admin.pages.portfolio.modal.update-photo')
+                                    @include('web-admin.pages.freelancer.modal.update')
 
                                     <button class="btn btn-xs btn-danger" title="Delete Data" data-bs-toggle="modal"
                                         data-bs-target="#delete-data{{ $item->id }}">
@@ -88,7 +71,7 @@
                                         </svg>
                                     </button>
 
-                                    @include('web-admin.pages.portfolio.modal.delete')
+                                    @include('web-admin.pages.freelancer.modal.delete')
 
                                 </td>
                             </tr>
@@ -98,6 +81,5 @@
             </div>
         </div>
     </div>
-
-    @include('web-admin.pages.portfolio.modal.create')
+    @include('web-admin.pages.freelancer.modal.create')
 @endsection

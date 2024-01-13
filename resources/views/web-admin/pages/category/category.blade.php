@@ -36,6 +36,7 @@
                             <th class="border-0">Title</th>
                             <th class="border-0">Description</th>
                             <th class="border-0">Action</th>
+                            <th class="border-0">Is Active</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->description }}</td>
+                                <td>{{ $item->is_active }}</td>
                                 <td>
                                     <button class="btn btn-xs btn-primary" title="Update Data" data-bs-toggle="modal"
                                         data-bs-target="#update-data{{ $item->id }}">

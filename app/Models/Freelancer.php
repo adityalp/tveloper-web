@@ -13,7 +13,7 @@ class Freelancer extends Model
     protected $table = 'freelancers';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-    protected $fillable = ['id', 'name', 'email', 'skill', 'phone', 'is_active'];
+    protected $fillable = ['id', 'name', 'email', 'skill', 'phone'];
     /**
      * Set the Id.
      *
