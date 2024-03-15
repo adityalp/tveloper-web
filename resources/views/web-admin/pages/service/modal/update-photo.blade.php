@@ -1,29 +1,20 @@
-<div id="update-data{{ $item->id }}" class="modal fade" id="modal-default" tabindex="-1" role="dialog"
+<div id="update-photo{{ $item->id }}" class="modal fade" id="modal-default" tabindex="-1" role="dialog"
     aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="h6 modal-title">Create Data</h2>
+                <h2 class="h6 modal-title">Upload Photo</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('socialmedia.update', $item->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('update-icon', $item->id) }}">
                     @csrf
-                    @method('PUT')
                     <div class="row mt-3">
                         <div class="col-3">
-                            <label for="title" class="col-form-label">Title</label>
+                            <label for="formFile" class="form-label">icon</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="title" name="title" class="form-control" value="{{ $item->title }}">
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-3">
-                            <label for="link" class="col-form-label">Link</label>
-                        </div>
-                        <div class="col-9">
-                            <textarea class="form-control" id="link" name="link" rows="4">{{ $item->link }}</textarea>
+                            <input class="form-control" type="file" id="icon" name="icon">
                         </div>
                     </div>
             </div>

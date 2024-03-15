@@ -25,6 +25,9 @@ class StoreServiceRequest extends FormRequest
     {
         return [
             //
+                'title' => 'required',
+                'icon' => 'mimes:jpg,jpeg,png|required|max:50000',
+                'description' => 'required', 
         ];
     }
 }

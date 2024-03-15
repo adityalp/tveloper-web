@@ -22,7 +22,7 @@
                             <label for="email" class="col-form-label">Email</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="email" name="email" class="form-control">
+                            <input type="email" id="email" name="email" class="form-control">
                         </div>
                     </div>
                     <div class="row mt-2">
