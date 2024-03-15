@@ -25,6 +25,9 @@ class StoreSocialMediaRequest extends FormRequest
     {
         return [
             //
+            'icon' => 'mimes:jpg,jpeg,png|required|max:50000',
+            'title' => 'required',
+            'link' => 'required', 
         ];
     }
 }

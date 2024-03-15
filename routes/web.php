@@ -37,11 +37,18 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('company', CompanyController::class);
         Route::resource('contact', ContactController::class);
         Route::resource('freelancer', FreelancerController::class);
-
+        Route::resource('category', CategoryController::class);
 
         Route::resource('service', ServiceController::class);
+        Route::prefix('service')->group(function () {
+            Route::post('update/icon/{id}', [ServiceController::class, 'update_icon'])->name('update-icon');
+        });
 
         Route::resource('socialmedia', SocialMediaController::class);
+        Route::prefix('socialmedia')->group(function () {
+            Route::post('update/icon/{id}', [SocialMediaController::class, 'update_icon'])->name('update-social-icon');
+        });
+
 
         Route::resource('team', TeamController::class);
         Route::prefix('team')->group(function () {
@@ -51,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('portfolio', PortfolioController::class);
 
 
-        Route::resource('category', CategoryController::class);
+        
 
     });
 });

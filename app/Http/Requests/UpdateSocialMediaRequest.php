@@ -25,6 +25,8 @@ class UpdateSocialMediaRequest extends FormRequest
     {
         return [
             //
+            'title' => 'required',
+            'link' => 'required',   
         ];
     }
 }

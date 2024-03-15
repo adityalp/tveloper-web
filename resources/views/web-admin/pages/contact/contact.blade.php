@@ -43,13 +43,18 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
+                        @php
+                                $isActive = ($item->is_active === 1) ? ['Active', 'bg-success'] : ['Not Active', 'bg-danger']
+                        @endphp
                             <tr class="text-center">
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->subject }}</td>
                                 <td>{{ $item->message }}</td>
-                                <td>{{ $item->is_active }}</td>
+                                <td><span class="badge {{ $isActive[1] }}">
+                                    {{ $isActive[0] }}
+                                </span></td>
                                 <td>
                                     <button class="btn btn-xs btn-primary" title="Update Data" data-bs-toggle="modal"
                                         data-bs-target="#update-data{{ $item->id }}">
