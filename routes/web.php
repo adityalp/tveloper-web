@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\WebAdmin\CategoryController;
 use App\Http\Controllers\WebAdmin\CompanyController;
 use App\Http\Controllers\WebAdmin\DashboardController;
+use App\Http\Controllers\WebAdmin\PortfolioController;
+use App\Http\Controllers\WebAdmin\ContactController;
+use App\Http\Controllers\WebAdmin\FreelancerController;
+use App\Http\Controllers\WebAdmin\ServiceController;
+use App\Http\Controllers\WebAdmin\SocialMediaController;
 use App\Http\Controllers\WebAdmin\TeamController;
 use App\Http\Controllers\WebFront\ClientController;
 use App\Http\Controllers\WebFront\MainController;
@@ -29,11 +35,30 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
 
         Route::resource('company', CompanyController::class);
+        Route::resource('contact', ContactController::class);
+        Route::resource('freelancer', FreelancerController::class);
+        Route::resource('category', CategoryController::class);
+
+        Route::resource('service', ServiceController::class);
+        Route::prefix('service')->group(function () {
+            Route::post('update/icon/{id}', [ServiceController::class, 'update_icon'])->name('update-icon');
+        });
+
+        Route::resource('socialmedia', SocialMediaController::class);
+        Route::prefix('socialmedia')->group(function () {
+            Route::post('update/icon/{id}', [SocialMediaController::class, 'update_icon'])->name('update-social-icon');
+        });
+
 
         Route::resource('team', TeamController::class);
         Route::prefix('team')->group(function () {
             Route::post('update/photo/{id}', [TeamController::class, 'update_photo'])->name('update-photo');
         });
+
+        Route::resource('portfolio', PortfolioController::class);
+
+
+        
 
     });
 });

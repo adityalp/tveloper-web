@@ -19,10 +19,10 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-3">
-                            <label for="position" class="col-form-label">Position</label>
+                            <label for="title" class="col-form-label">Title</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="position" name="position" class="form-control">
+                            <input type="text" id="title" name="title" class="form-control">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -35,10 +35,10 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-3">
-                            <label for="formFile" class="form-label">Photo</label>
+                            <label for="path" class="form-label">Photo</label>
                         </div>
                         <div class="col-9">
-                            <input class="form-control" type="file" id="photo" name="photo">
+                            <input class="form-control" type="file" id="path" name="path">
                         </div>
                     </div>
             </div>

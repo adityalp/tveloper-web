@@ -3,49 +3,55 @@
 namespace App\Http\Controllers\WebAdmin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UpdateCompanyRequest;
+use App\Http\Requests\StoreCompanyRequest;
+use App\Services\CompanyService;
 
 class CompanyController extends Controller
 {
+    private $service;
+
+    public function __construct(CompanyService $service) {
+        parent::__construct();
+        $this->service = $service;
+    }
+
     public function index()
     {
         $title = "Company";
-        $data = Company::all();
+        $data = $this->service->get($this->params);
 
         return view('web-admin/pages/company.company', compact('title', 'data'));
     }
 
-    public function update(Request $request, $id)
+    public function show()
     {
-        $validate = Validator::make($request->all(), [
-            'name' => 'required',
-            'location' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-        ]);
+        $title = "Company";
+        $data = $this->service->get($this->params);
 
-        if ($validate->fails()) {
-            return back()->withErrors($validate->errors());
-        }
+        return view('web-admin/pages/company.company', compact('title', 'data'));
+    }
 
-        $data = Company::findOrFail($id);
-        $data->name = $request->name;
-        $data->location = $request->location;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->save();
+    public function store(StoreCompanyRequest $request)
+    {
+        $_data = array_merge($request->validated());
+        $_data = $this->service->create($_data);
 
-        return redirect()->route('company.index')->with('success', 'Updated Successfully ..');
+        return redirect()
+            ->route('company.index')
+            ->with('success', $this->message::afterInsert(true));
+    }
+
+    public function update(UpdateCompanyRequest $request, $id)
+    {
+        $_data = $this->service->update(['id', $id], $request->validated());
+        return redirect()->route('company.index')->with('success', $this->message::afterUpdate(true));
     }
 
     public function destroy($id)
     {
-        $data = Company::findOrFail($id);
-        $data->delete();
-
-        return back()->with('success', 'Deleted Successfully ..');
+        $_data = $this->service->destroy($id);
+        return back()->with('success', $this->message::afterDestroy(true));
     }
 
 

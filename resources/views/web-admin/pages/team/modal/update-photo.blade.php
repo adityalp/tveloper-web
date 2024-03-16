@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="h6 modal-title">Create Data</h2>
+                <h2 class="h6 modal-title">Upload Photo</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -14,7 +14,7 @@
                             <label for="formFile" class="form-label">Photo</label>
                         </div>
                         <div class="col-9">
-                            <input class="form-control" type="file" id="photo_updt" name="photo_updt">
+                            <input class="form-control" type="file" id="photo" name="photo">
                         </div>
                     </div>
             </div>

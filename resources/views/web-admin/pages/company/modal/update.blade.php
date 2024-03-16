@@ -21,19 +21,19 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-3">
-                            <label for="location" class="col-form-label">Location</label>
-                        </div>
-                        <div class="col-9">
-                            <textarea class="form-control" id="location" name="location" rows="4">{{ $item->location }}</textarea>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-3">
                             <label for="email" class="col-form-label">Email</label>
                         </div>
                         <div class="col-9">
                             <input type="email" id="email" name="email" class="form-control"
                                 value="{{ $item->email }}">
+                        </div>
+                    </div>                    
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <label for="address" class="col-form-label">Address</label>
+                        </div>
+                        <div class="col-9">
+                            <textarea class="form-control" id="address" name="address" rows="4">{{ $item->address }}</textarea>
                         </div>
                     </div>
                     <div class="row mt-3">

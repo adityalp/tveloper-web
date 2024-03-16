@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Freelancer;
+use App\Services\FreelancerService;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MemberController extends Controller
 {
+    private $service;
+
+    public function __construct(FreelancerService $service) {
+        parent::__construct();
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,9 +52,10 @@ class MemberController extends Controller
             'skill'   => 'required',
             'phone'   => 'required|max:13'
         ]);
-        
+        $message = $this->message->afterEvent('You\'ve Successfully Registered', 'Failed', true);
+
         Freelancer::create($request->all());
-        Alert::success('Congrats', 'You\'ve Successfully Registered');
+        Alert::success('Congrats', $message);
         
         return back();
     }

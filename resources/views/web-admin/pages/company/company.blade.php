@@ -9,6 +9,17 @@
             <div class="mb-3 mb-lg-0">
                 <h1 class="h4">Company Data</h1>
             </div>
+            <div>
+                <button class="btn btn-secondary d-inline-flex align-items-center" data-bs-toggle="modal"
+                    data-bs-target="#create-data">
+                    <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Create Data
+                </button>
+            </div>
         </div>
     </div>
 
@@ -23,20 +34,29 @@
                         <tr class="text-center">
                             <th class="border-0 rounded-start">#</th>
                             <th class="border-0">Name</th>
-                            <th class="border-0">Location</th>
                             <th class="border-0">Email</th>
+                            <th class="border-0">Address</th>
                             <th class="border-0">Phone</th>
+                            <th class="border-0">Is Active</th>
                             <th class="border-0">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
+                            @php
+                                $isActive = ($item->is_active === 1) ? ['Active', 'bg-success'] : ['Not Active', 'bg-danger']
+                            @endphp
                             <tr class="text-center">
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->location }}</td>
                                 <td>{{ $item->email }}</td>
+                                <td>{{ $item->address }}</td>
                                 <td>{{ $item->phone }}</td>
+                                <td>
+                                    <span class="badge {{ $isActive[1] }}">
+                                        {{ $isActive[0] }}
+                                    </span>
+                                </td>
                                 <td>
                                     <button class="btn btn-xs btn-primary" title="Update Data" data-bs-toggle="modal"
                                         data-bs-target="#update-data{{ $item->id }}">
@@ -70,4 +90,5 @@
             </div>
         </div>
     </div>
+    @include('web-admin.pages.company.modal.create')
 @endsection

@@ -34,25 +34,32 @@
                         <tr class="text-center">
                             <th class="border-0 rounded-start">#</th>
                             <th class="border-0">Name</th>
-                            <th class="border-0">Position</th>
+                            <th class="border-0">Title</th>
                             <th class="border-0">Description</th>
                             <th class="border-0">Photo</th>
+                            <th class="border-0">Is Active</th>
                             <th class="border-0">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
+                        @php
+                                $isActive = ($item->is_active === 1) ? ['Active', 'bg-success'] : ['Not Active', 'bg-danger']
+                        @endphp
                             <tr class="text-center">
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->position }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
-                                    <a href="{{ asset($item->photo) }}" target="_blank">
-                                        <img class="rounded-circle" src="{{ asset($item->photo) }}" width="46"
+                                    <a href="{{ asset($item->path) }}" target="_blank">
+                                        <img class="rounded-circle" src="{{ asset($item->path) }}" width="46"
                                             height="42" />
                                     </a>
                                 </td>
+                                <td><span class="badge {{ $isActive[1] }}">
+                                    {{ $isActive[0] }}
+                                </span></td>
                                 <td>
                                     <button class="btn btn-xs btn-primary" title="Update Data" data-bs-toggle="modal"
                                         data-bs-target="#update-data{{ $item->id }}">

@@ -122,7 +122,6 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -175,6 +174,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Third party Service Providers...
+         */
+        Kreait\Laravel\Firebase\ServiceProvider::class,
     ],
 
     /*

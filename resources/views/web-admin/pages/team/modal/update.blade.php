@@ -15,15 +15,15 @@
                             <label for="name" class="col-form-label">Name</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="name_updt" name="name_updt" class="form-control" value="{{ $item->name }}">
+                            <input type="text" id="name" name="name" class="form-control" value="{{ $item->name }}">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-3">
-                            <label for="position" class="col-form-label">Position</label>
+                            <label for="title" class="col-form-label">Title</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="position_updt" name="position_updt" class="form-control" value="{{ $item->position }}">
+                            <input type="text" id="title" name="title" class="form-control" value="{{ $item->title }}">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -31,7 +31,7 @@
                             <label for="description" class="col-form-label">Description</label>
                         </div>
                         <div class="col-9">
-                            <textarea class="form-control" id="description_updt" name="description_updt" rows="4">{{ $item->description }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="4">{{ $item->description }}</textarea>
                         </div>
                     </div>
             </div>
